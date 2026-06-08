@@ -1,4 +1,4 @@
-import { CSSProperties, useRef, useState } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 import { predictions } from '../data/birthdayData';
 import { useReveal } from '../hooks/useReveal';
 import PredictionCard from './PredictionCard';
@@ -7,20 +7,30 @@ function PredictionCards() {
   const revealRef = useReveal<HTMLElement>();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [burstKey, setBurstKey] = useState(0);
-  const resultRef = useRef<HTMLDivElement | null>(null);
-  const selectedPrediction = predictions.find((prediction) => prediction.id === selectedId);
+  const [modalId, setModalId] = useState<string | null>(null);
+  const selectedPrediction = predictions.find((p) => p.id === modalId);
 
   const selectPrediction = (id: string) => {
     if (selectedId === id) {
       setSelectedId(null);
     } else {
       setSelectedId(id);
-      setBurstKey((value) => value + 1);
-      setTimeout(() => {
-        resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 400);
+      setBurstKey((v) => v + 1);
+      setTimeout(() => setModalId(id), 500);
     }
   };
+
+  const closeModal = () => {
+    setModalId(null);
+    setSelectedId(null);
+  };
+
+  useEffect(() => {
+    if (!modalId) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeModal(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [modalId]);
 
   return (
     <section className="section section--narrow reveal" id="cards" ref={revealRef}>
@@ -44,23 +54,26 @@ function PredictionCards() {
             />
           ))}
         </div>
-        {selectedPrediction && (
-          <div className="prediction-result" key={selectedPrediction.id} ref={resultRef}>
-            <p className="prediction-result__label">Толкование карты</p>
-            <h3>{selectedPrediction.title}</h3>
-            <p>{selectedPrediction.text}</p>
-            <button className="button button--ghost" type="button" onClick={() => setSelectedId(null)}>
-              Выбрать еще одну карту
-            </button>
-            <small>Спойлер: все карты хорошие. Потому что это про тебя.</small>
-          </div>
-        )}
         <div className="spark-burst" key={burstKey} aria-hidden="true">
           {Array.from({ length: 12 }).map((_, index) => (
             <span key={index} style={{ '--burst-index': index } as CSSProperties} />
           ))}
         </div>
       </div>
+
+      {selectedPrediction && (
+        <div className="prediction-modal" role="dialog" aria-modal="true" onClick={closeModal}>
+          <div className="prediction-modal__card" onClick={(e) => e.stopPropagation()}>
+            <p className="prediction-result__label">Толкование карты</p>
+            <h3>{selectedPrediction.title}</h3>
+            <p>{selectedPrediction.text}</p>
+            <small>Спойлер: все карты хорошие. Потому что это про тебя.</small>
+            <button className="button button--ghost" type="button" onClick={closeModal}>
+              Закрыть
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
