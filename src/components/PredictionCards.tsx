@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from 'react';
+import { CSSProperties, useRef, useState } from 'react';
 import { predictions } from '../data/birthdayData';
 import { useReveal } from '../hooks/useReveal';
 import PredictionCard from './PredictionCard';
@@ -7,6 +7,7 @@ function PredictionCards() {
   const revealRef = useReveal<HTMLElement>();
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [burstKey, setBurstKey] = useState(0);
+  const resultRef = useRef<HTMLDivElement | null>(null);
   const selectedPrediction = predictions.find((prediction) => prediction.id === selectedId);
 
   const selectPrediction = (id: string) => {
@@ -15,6 +16,9 @@ function PredictionCards() {
     } else {
       setSelectedId(id);
       setBurstKey((value) => value + 1);
+      setTimeout(() => {
+        resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 400);
     }
   };
 
@@ -41,7 +45,7 @@ function PredictionCards() {
           ))}
         </div>
         {selectedPrediction && (
-          <div className="prediction-result" key={selectedPrediction.id}>
+          <div className="prediction-result" key={selectedPrediction.id} ref={resultRef}>
             <p className="prediction-result__label">Толкование карты</p>
             <h3>{selectedPrediction.title}</h3>
             <p>{selectedPrediction.text}</p>
