@@ -419,6 +419,7 @@ p {
   border: 0;
   padding: 0;
   perspective: 1100px;
+  -webkit-perspective: 1100px;
   background: transparent;
   cursor: pointer;
 }
@@ -440,11 +441,13 @@ p {
 
 .prediction-card:hover .prediction-card__inner {
   transform: translateY(-8px) rotateX(4deg);
+  -webkit-transform: translateY(-8px) rotateX(4deg);
 }
 
 .prediction-card.is-flipped .prediction-card__inner,
 .prediction-card.is-flipped:hover .prediction-card__inner {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
 }
 
 .prediction-card__face {
@@ -456,6 +459,8 @@ p {
   justify-content: space-between;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
   border: 1px solid rgba(245, 212, 139, 0.56);
   border-radius: 16px;
   padding: 18px 14px;
@@ -489,6 +494,7 @@ p {
 
 .prediction-card__front {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   justify-content: space-between;
   gap: 10px;
   color: var(--gold-bright);
