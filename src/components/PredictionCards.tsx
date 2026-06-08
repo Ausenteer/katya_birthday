@@ -10,8 +10,12 @@ function PredictionCards() {
   const selectedPrediction = predictions.find((prediction) => prediction.id === selectedId);
 
   const selectPrediction = (id: string) => {
-    setSelectedId(id);
-    setBurstKey((value) => value + 1);
+    if (selectedId === id) {
+      setSelectedId(null);
+    } else {
+      setSelectedId(id);
+      setBurstKey((value) => value + 1);
+    }
   };
 
   return (
