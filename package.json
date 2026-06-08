@@ -1,0 +1,23 @@
+{
+  "name": "birthday-katya",
+  "version": "1.0.0",
+  "description": "Magical birthday website for Katya",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.5.3",
+    "vite": "^6.4.2"
+  },
+  "private": true
+}
