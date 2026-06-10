@@ -534,6 +534,43 @@ p {
   text-shadow: 0 0 22px rgba(245, 212, 139, 0.6);
 }
 
+.prediction-card__back-top {
+  position: relative;
+  z-index: 1;
+  color: rgba(245, 212, 139, 0.5);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+}
+
+.prediction-card__back-seal {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(245, 212, 139, 0.45);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 212, 139, 0.12), transparent 68%);
+  box-shadow: 0 0 24px rgba(245, 212, 139, 0.1);
+}
+
+.prediction-card__back-seal-inner {
+  color: var(--gold-bright);
+  font-size: 1.8rem;
+  opacity: 0.85;
+  text-shadow: 0 0 18px rgba(245, 212, 139, 0.5);
+}
+
+.prediction-card__back-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
 .prediction-card__number,
 .prediction-card__bottom,
 .prediction-card__mark {

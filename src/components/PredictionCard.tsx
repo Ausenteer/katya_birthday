@@ -34,11 +34,14 @@ function PredictionCard({ prediction, isSelected, onSelect }: PredictionCardProp
     >
       <span className="prediction-card__inner">
         <span className="prediction-card__face prediction-card__back">
-          <span className="prediction-card__number">{prediction.number}</span>
-          <span className="prediction-card__icon">{iconMap[prediction.icon]}</span>
-          <span className="prediction-card__mark">Birthday Tarot</span>
-          <span className="prediction-card__lines" />
-          <span className="prediction-card__bottom">Katya Arcana</span>
+          <span className="prediction-card__back-top">✦</span>
+          <span className="prediction-card__back-seal">
+            <span className="prediction-card__back-seal-inner">♡</span>
+          </span>
+          <span className="prediction-card__back-bottom">
+            <span className="prediction-card__mark">Birthday Tarot</span>
+            <span className="prediction-card__bottom">Katya Arcana</span>
+          </span>
         </span>
         <span className="prediction-card__face prediction-card__front">
           <span className="prediction-card__number">{prediction.number}</span>
