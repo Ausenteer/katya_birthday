@@ -12,6 +12,7 @@ type Prediction = {
 type PredictionCardProps = {
   prediction: Prediction;
   isSelected: boolean;
+  isDimmed: boolean;
   onSelect: () => void;
 };
 
@@ -24,14 +25,33 @@ const iconMap: Record<PredictionIcon, string> = {
   sea: '≈',
 };
 
-function PredictionCard({ prediction, isSelected, onSelect }: PredictionCardProps) {
+export function PredictionCardFront({ prediction }: { prediction: Prediction }) {
   return (
-    <button
-      aria-pressed={isSelected}
-      className={isSelected ? 'prediction-card is-flipped' : 'prediction-card'}
-      onClick={onSelect}
-      type="button"
-    >
+    <span className="prediction-card__face prediction-card__front">
+      <span className="prediction-card__number">{prediction.number}</span>
+      <span className="prediction-card__icon">
+        <span className="prediction-card__icon-glyph">{iconMap[prediction.icon]}</span>
+      </span>
+      <span className="prediction-card__front-bottom">
+        <span className="prediction-card__arcana">{prediction.arcana}</span>
+        <span className="prediction-card__title">{prediction.title}</span>
+        <span className="prediction-card__bottom">birthday reading</span>
+      </span>
+    </span>
+  );
+}
+
+function PredictionCard({ prediction, isSelected, isDimmed, onSelect }: PredictionCardProps) {
+  const className = [
+    'prediction-card',
+    isSelected ? 'is-flipped' : '',
+    isDimmed ? 'is-dimmed' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return (
+    <button aria-pressed={isSelected} className={className} onClick={onSelect} type="button">
       <span className="prediction-card__inner">
         <span className="prediction-card__face prediction-card__back">
           <span className="prediction-card__back-top">✦</span>
@@ -43,13 +63,7 @@ function PredictionCard({ prediction, isSelected, onSelect }: PredictionCardProp
             <span className="prediction-card__bottom">Katya Arcana</span>
           </span>
         </span>
-        <span className="prediction-card__face prediction-card__front">
-          <span className="prediction-card__number">{prediction.number}</span>
-          <span className="prediction-card__icon">{iconMap[prediction.icon]}</span>
-          <span className="prediction-card__arcana">{prediction.arcana}</span>
-          <span className="prediction-card__title">{prediction.title}</span>
-          <span className="prediction-card__bottom">birthday reading</span>
-        </span>
+        <PredictionCardFront prediction={prediction} />
       </span>
     </button>
   );
