@@ -13,10 +13,9 @@ export const sections = [
   { id: 'hero', label: 'Главная', number: '01' },
   { id: 'cards', label: 'Карты', number: '02' },
   { id: 'dashboard', label: 'Дашборд', number: '03' },
-  { id: 'dress', label: 'Образ', number: '04' },
-  { id: 'love', label: 'Любим', number: '05' },
-  { id: 'greetings', label: 'Поздравления', number: '06' },
-  { id: 'final', label: 'Финал', number: '07' },
+  { id: 'love', label: 'Любим', number: '04' },
+  { id: 'greetings', label: 'Поздравления', number: '05' },
+  { id: 'final', label: 'Финал', number: '06' },
 ];
 
 export const moodMessages = {
@@ -70,7 +69,7 @@ export const predictions = [
     title: 'Аркан пяти уроков английского',
     icon: 'bolt' as PredictionIcon,
     text:
-      'Пять уроков английского в неделю это уже не хобби, это спортивный режим. Предсказание: к концу года англичане начнут переспрашивать у тебя, как правильно сказать.',
+      'Пять уроков английского в неделю это уже не хобби, это вторая работа. Предсказание: к концу года англичане начнут переспрашивать у тебя, как правильно сказать.',
   },
   {
     id: 'three-friends',
@@ -84,12 +83,12 @@ export const predictions = [
 ];
 
 export const kpis = [
-  { label: 'Kindness Index', value: '150%', caption: 'Стабильно выше рынка.' },
-  { label: 'Beauty Score', value: '∞', caption: 'Метрика не помещается в стандартный формат.' },
-  { label: 'Hardwork Level', value: '999+', caption: 'Екатерина Хардворковна mode: active.' },
-  { label: 'Friendship Value', value: 'priceless', caption: 'Не поддается оценке, но точно растет.' },
-  { label: 'Limassol Glow', value: '10/10', caption: 'Солнечная энергия обнаружена.' },
-  { label: 'Zimmer Drama Level', value: 'Epic', caption: 'Саундтрек уже играет.' },
+  { label: 'Kindness Index', value: '150%', caption: 'Стабильно выше рынка' },
+  { label: 'Beauty Score', value: '∞', caption: 'Метрика не помещается в стандартный формат' },
+  { label: 'Hardwork Level', value: '999+', caption: 'Екатерина Хардворковна mode: active' },
+  { label: 'Friendship Value', value: 'priceless', caption: 'Не поддается оценке, но точно растет' },
+  { label: 'Kinder Fuel', value: 'Full tank', caption: 'Запас бегемотиков и Cards пополнен' },
+  { label: 'Storytelling Level', value: 'Legendary', caption: 'История про киприотов и трубу затребована на бис' },
 ];
 
 export const chartBars = [
@@ -97,6 +96,15 @@ export const chartBars = [
   { label: 'Rest', value: 35 },
   { label: 'Joy', value: 100 },
   { label: 'Love from us', value: 300 },
+];
+
+export const migrationStops = [
+  { place: 'пгт Грибановский', note: 'точка отсчета', isHome: false },
+  { place: 'Москва', note: 'разгон', isHome: false },
+  { place: 'Шри-Ланка', note: 'пробный заход', isHome: false },
+  { place: 'Турция', note: 'еще теплее', isHome: false },
+  { place: 'Грузия', note: 'транзит', isHome: false },
+  { place: 'Кипр', note: 'остров стал домиком', isHome: true },
 ];
 
 export const metrics = [

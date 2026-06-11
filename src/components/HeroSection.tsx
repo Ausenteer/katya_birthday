@@ -1,12 +1,12 @@
+import katyaLemonPortrait from '../assets/katya-lemon-doll.webp';
 import { birthdayGirl } from '../data/birthdayData';
 import { useReveal } from '../hooks/useReveal';
 
 type HeroSectionProps = {
   onStart: () => void;
-  onCards: () => void;
 };
 
-function HeroSection({ onStart, onCards }: HeroSectionProps) {
+function HeroSection({ onStart }: HeroSectionProps) {
   const revealRef = useReveal<HTMLElement>();
 
   return (
@@ -20,18 +20,13 @@ function HeroSection({ onStart, onCards }: HeroSectionProps) {
         </p>
         <div className="hero__actions">
           <button className="button button--primary" type="button" onClick={onStart}>
-            Начать поздравление
-          </button>
-          <button className="button button--ghost" type="button" onClick={onCards}>
-            Выбрать предсказание
+            Начать расклад
           </button>
         </div>
       </div>
       <div className="hero__visual" aria-hidden="true">
         <div className="portrait">
-          <div className="portrait__halo" />
-          <div className="portrait__moon" />
-          <div className="portrait__figure" />
+          <img className="portrait__photo" src={katyaLemonPortrait} alt="" />
           <div className="portrait__spark portrait__spark--one" />
           <div className="portrait__spark portrait__spark--two" />
           <div className="portrait__spark portrait__spark--three" />

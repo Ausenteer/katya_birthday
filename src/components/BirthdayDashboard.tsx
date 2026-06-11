@@ -1,5 +1,5 @@
 import { chartBars, metrics, useCssNumber } from '../data/dashboardHelpers';
-import { kpis } from '../data/birthdayData';
+import { kpis, migrationStops } from '../data/birthdayData';
 import { useReveal } from '../hooks/useReveal';
 import KpiCard from './KpiCard';
 
@@ -39,7 +39,8 @@ function BirthdayDashboard() {
           </div>
           <p className="dashboard-note">
             Вывод аналитиков: показатель отдыха требует срочного увеличения. Рекомендация: больше
-            моря, красивых мест, вкусной еды и дней без "quick question".
+            моря, красивых мест и вкусной еды. В данных обнаружена аномалия: необъяснимый рост
+            запасов Kinder перед дедлайнами. Расследование продолжается.
           </p>
         </div>
 
@@ -49,14 +50,37 @@ function BirthdayDashboard() {
             <h3>Из чего состоит Катя</h3>
           </div>
           <div className="pie-wrap">
-            <div className="pie-chart" aria-label="35% ум, 25% красота, 20% доброта, 10% юмор, 10% магия" />
+            <div
+              className="pie-chart"
+              aria-label="25% ум, 20% красота, 15% доброта, 15% бегемотики Kinder, 10% печеньки Kinder Cards, 10% чувство юмора, 5% магия"
+            />
             <ul>
-              <li><span className="legend legend--one" />35% ум</li>
-              <li><span className="legend legend--two" />25% красота</li>
-              <li><span className="legend legend--three" />20% доброта</li>
-              <li><span className="legend legend--four" />10% чувство юмора</li>
-              <li><span className="legend legend--five" />10% магия</li>
+              <li><span className="legend legend--one" />25% ум</li>
+              <li><span className="legend legend--two" />20% красота</li>
+              <li><span className="legend legend--three" />15% доброта</li>
+              <li><span className="legend legend--four" />15% бегемотики Kinder</li>
+              <li><span className="legend legend--five" />10% печеньки Kinder Cards</li>
+              <li><span className="legend legend--six" />10% чувство юмора</li>
+              <li><span className="legend legend--seven" />5% магия</li>
             </ul>
+          </div>
+        </div>
+
+        <div className="dashboard__panel migration-panel">
+          <div>
+            <p className="panel-label">Migration history</p>
+            <h3>Путь до домика</h3>
+          </div>
+          <div className="migration-track">
+            {migrationStops.map((stop) => (
+              <div className={stop.isHome ? 'migration-stop is-home' : 'migration-stop'} key={stop.place}>
+                <span className="migration-stop__dot" aria-hidden="true" />
+                <span className="migration-stop__text">
+                  <strong>{stop.place}</strong>
+                  <small>{stop.note}</small>
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 

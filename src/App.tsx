@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { sections } from './data/birthdayData';
 import BirthdayDashboard from './components/BirthdayDashboard';
-import DressUpKatya from './components/DressUpKatya';
 import FinalSection from './components/FinalSection';
 import GreetingsSection from './components/GreetingsSection';
 import HeroSection from './components/HeroSection';
@@ -62,10 +61,9 @@ function App() {
   return (
     <Layout isEpic={false}>
       <SectionNav activeSection={activeSection} onSelect={scrollToSection} />
-      <HeroSection onStart={() => scrollToSection('cards')} onCards={() => scrollToSection('cards')} />
+      <HeroSection onStart={() => scrollToSection('cards')} />
       <PredictionCards />
       <BirthdayDashboard />
-      <DressUpKatya />
       <LoveReasons />
       <GreetingsSection />
       <FinalSection />
