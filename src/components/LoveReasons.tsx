@@ -1,36 +1,35 @@
-import { CSSProperties, MouseEvent, useEffect, useState } from 'react';
-import { compliments, loveReasons } from '../data/birthdayData';
+import { CSSProperties, useState } from 'react';
+import { loveFacts, loveReasons } from '../data/birthdayData';
 import { useReveal } from '../hooks/useReveal';
 
 function LoveReasons() {
   const revealRef = useReveal<HTMLElement>();
-  const [caughtReasons, setCaughtReasons] = useState<number[]>([]);
-  const [openReasons, setOpenReasons] = useState<number[]>([]);
-  const [complimentIndex, setComplimentIndex] = useState(0);
+  const [caught, setCaught] = useState<number[]>([]);
+  const [active, setActive] = useState<number | null>(null);
+  const [factIndex, setFactIndex] = useState(0);
 
-  const catchReason = (index: number) => {
-    setCaughtReasons((caught) => (caught.includes(index) ? caught : [...caught, index]));
-    setOpenReasons((open) => (open.includes(index) ? open.filter((item) => item !== index) : [...open, index]));
+  const catchFirefly = (index: number) => {
+    setCaught((prev) => (prev.includes(index) ? prev : [...prev, index]));
+    setActive(index);
   };
 
-  const nextCompliment = () => {
-    setComplimentIndex((index) => (index + 1) % compliments.length);
+  const nextFact = () => {
+    setFactIndex((index) => {
+      if (loveFacts.length < 2) return index;
+      let next = index;
+      while (next === index) {
+        next = Math.floor(Math.random() * loveFacts.length);
+      }
+      return next;
+    });
   };
 
-  useEffect(() => {
-    const closeOpenNotes = () => setOpenReasons([]);
-
-    document.addEventListener('click', closeOpenNotes);
-    return () => document.removeEventListener('click', closeOpenNotes);
-  }, []);
-
-  const closeNotes = () => {
-    setOpenReasons([]);
+  const releaseFireflies = () => {
+    setCaught([]);
+    setActive(null);
   };
 
-  const stopGameClick = (event: MouseEvent) => {
-    event.stopPropagation();
-  };
+  const allCaught = caught.length === loveReasons.length;
 
   return (
     <section className="section section--narrow reveal" id="love" ref={revealRef}>
@@ -40,12 +39,12 @@ function LoveReasons() {
         <p>Поймай светлячков: в каждом спрятана причина, почему ты для нас такая особенная.</p>
       </div>
 
-      <div className="firefly-game" aria-label="Интерактивные светлячки с причинами" onClick={closeNotes}>
+      <div className="firefly-game" aria-label="Интерактивные светлячки с причинами">
         <div className="firefly-game__sky" aria-hidden="true" />
+
         {loveReasons.map((reason, index) => {
-          const isCaught = caughtReasons.includes(index);
-          const isOpen = openReasons.includes(index);
-          const opensLeft = index % 4 === 3;
+          const isCaught = caught.includes(index);
+          const isActive = active === index;
           const orbit = index % 4;
 
           return (
@@ -53,8 +52,7 @@ function LoveReasons() {
               className={[
                 'firefly-cluster',
                 `firefly-cluster--orbit-${orbit + 1}`,
-                opensLeft ? 'firefly-cluster--left' : '',
-                isOpen ? 'is-open' : '',
+                isActive ? 'is-active' : '',
               ]
                 .filter(Boolean)
                 .join(' ')}
@@ -62,55 +60,57 @@ function LoveReasons() {
               style={
                 {
                   '--x': `${10 + ((index * 19) % 74)}%`,
-                  '--y': `${14 + ((index * 31) % 58)}%`,
+                  '--y': `${12 + ((index * 31) % 48)}%`,
                   '--float-delay': `${index * -0.72}s`,
                   '--float-duration': `${11 + orbit * 1.4}s`,
                 } as CSSProperties
               }
             >
               <button
-                aria-expanded={isOpen}
                 aria-label={`Поймать светлячок ${index + 1}`}
                 className={isCaught ? 'firefly is-caught' : 'firefly'}
-                onClick={(event) => {
-                  event.stopPropagation();
-                  catchReason(index);
-                }}
+                onClick={() => catchFirefly(index)}
                 type="button"
               >
                 <span className="firefly__wing firefly__wing--left" />
                 <span className="firefly__wing firefly__wing--right" />
                 <span className="firefly__body" />
               </button>
-              {isOpen && (
-                <article className="firefly-note" onClick={stopGameClick}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <p>{reason}</p>
-                </article>
-              )}
             </div>
           );
         })}
 
+        <div className="firefly-reveal" aria-live="polite">
+          {active === null ? (
+            <p className="firefly-reveal__hint">поймай первого светлячка</p>
+          ) : (
+            <div className="firefly-reveal__card" key={active}>
+              <span className="firefly-reveal__index">
+                {String(active + 1).padStart(2, '0')} / {String(loveReasons.length).padStart(2, '0')}
+              </span>
+              <p>{loveReasons[active]}</p>
+            </div>
+          )}
+        </div>
+
+        <div className="firefly-progress" aria-hidden="true">
+          {loveReasons.map((reason, index) => (
+            <span key={reason} className={caught.includes(index) ? 'is-on' : ''} />
+          ))}
+        </div>
       </div>
 
       <div className="love-actions">
-        {caughtReasons.length > 0 && (
-          <button
-            className="button button--ghost"
-            type="button"
-            onClick={() => {
-              setCaughtReasons([]);
-              setOpenReasons([]);
-            }}
-          >
+        {allCaught && <p className="firefly-done">Все причины пойманы ♡ но на самом деле их бесконечно больше.</p>}
+        {caught.length > 0 && (
+          <button className="button button--ghost" type="button" onClick={releaseFireflies}>
             Вернуть светлячков
           </button>
         )}
         <div className="compliment-generator">
-          <p>{compliments[complimentIndex]}</p>
-          <button className="button button--primary" type="button" onClick={nextCompliment}>
-            Сгенерировать комплимент
+          <p>{loveFacts[factIndex]}</p>
+          <button className="button button--primary" type="button" onClick={nextFact}>
+            Сгенерировать факт
           </button>
         </div>
       </div>

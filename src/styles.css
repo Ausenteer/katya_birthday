@@ -1941,9 +1941,8 @@ p {
   animation-name: fireflyFloatFour;
 }
 
-.firefly-cluster.is-open {
-  z-index: 5;
-  animation-play-state: paused;
+.firefly-cluster.is-active {
+  z-index: 3;
 }
 
 .firefly {
@@ -2033,61 +2032,91 @@ p {
   transform: translateX(-50%);
 }
 
-.firefly-note {
+.firefly-reveal {
   position: absolute;
-  left: calc(100% + 14px);
+  left: 50%;
   top: 50%;
-  width: min(320px, 58vw);
-  transform: translateY(-50%);
-  border: 1px solid rgba(245, 212, 139, 0.42);
-  border-radius: 16px;
-  padding: 14px 16px;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(245, 212, 139, 0.15), transparent 12rem),
-    rgba(17, 16, 24, 0.94);
-  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.42), 0 0 38px rgba(216, 180, 106, 0.12);
-  animation: noteAppear 220ms ease both;
+  z-index: 4;
+  width: min(560px, 84%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
 }
 
-.firefly-note::before {
+.firefly-reveal::before {
   content: '';
   position: absolute;
-  left: -7px;
-  top: 50%;
-  width: 12px;
-  height: 12px;
-  border-left: 1px solid rgba(245, 212, 139, 0.42);
-  border-bottom: 1px solid rgba(245, 212, 139, 0.42);
-  background: rgba(17, 16, 24, 0.94);
-  transform: translateY(-50%) rotate(45deg);
+  inset: -48px -36px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(7, 6, 10, 0.85) 0%,
+    rgba(7, 6, 10, 0.52) 46%,
+    transparent 74%
+  );
 }
 
-.firefly-cluster--left .firefly-note {
-  right: calc(100% + 14px);
-  left: auto;
+.firefly-reveal__hint {
+  margin: 0;
+  color: rgba(245, 212, 139, 0.5);
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
 }
 
-.firefly-cluster--left .firefly-note::before {
-  right: -7px;
-  left: auto;
-  border: 0;
-  border-top: 1px solid rgba(245, 212, 139, 0.42);
-  border-right: 1px solid rgba(245, 212, 139, 0.42);
+.firefly-reveal__card {
+  animation: revealRise 460ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
-.firefly-note span {
+.firefly-reveal__index {
+  display: inline-block;
+  margin-bottom: 14px;
   color: var(--gold-bright);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.34em;
 }
 
-.firefly-note p {
-  margin: 6px 0 0;
-  color: rgba(246, 240, 232, 0.84);
-  font-size: 0.96rem;
-  line-height: 1.55;
+.firefly-reveal__card p {
+  margin: 0;
+  color: var(--milk);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+  line-height: 1.4;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.85), 0 0 56px rgba(216, 180, 106, 0.28);
+}
+
+.firefly-progress {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  z-index: 4;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.firefly-progress span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(246, 240, 232, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(216, 180, 106, 0.28);
+  transition: background 320ms ease, box-shadow 320ms ease;
+}
+
+.firefly-progress span.is-on {
+  background: var(--gold-bright);
+  box-shadow: 0 0 10px rgba(245, 212, 139, 0.85);
+}
+
+.firefly-done {
+  margin: 0;
+  color: var(--gold-bright);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  text-align: center;
 }
 
 .love-card {
@@ -2429,9 +2458,9 @@ p {
   50% { opacity: 0.56; scale: 0.86 1.08; }
 }
 
-@keyframes noteAppear {
-  from { opacity: 0; transform: translate(8px, -50%) scale(0.96); }
-  to { opacity: 1; transform: translate(0, -50%) scale(1); }
+@keyframes revealRise {
+  from { opacity: 0; transform: translateY(16px); filter: blur(5px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
 @keyframes fireflyFloatOne {
@@ -2718,27 +2747,12 @@ p {
     height: 32px;
   }
 
-  .firefly-note {
-    left: 50%;
-    right: auto;
-    top: calc(100% + 12px);
-    width: min(270px, 72vw);
-    transform: translateX(-50%);
+  .firefly-reveal {
+    width: 88%;
   }
 
-  .firefly-cluster--left .firefly-note {
-    right: auto;
-    left: 50%;
-  }
-
-  .firefly-note::before {
-    left: 50%;
-    right: auto;
-    top: -7px;
-    border: 0;
-    border-left: 1px solid rgba(245, 212, 139, 0.42);
-    border-bottom: 1px solid rgba(245, 212, 139, 0.42);
-    transform: translateX(-50%) rotate(135deg);
+  .firefly-reveal::before {
+    inset: -36px -22px;
   }
 
   .pie-chart {
