@@ -58,7 +58,7 @@ function BirthdayDashboard() {
               <span className="pie-chart__kinder-label">
                 <span className="pie-chart__kinder-k">k</span>inder
               </span>
-              <span className="pie-chart__mem-label">мем</span>
+              <span className="pie-chart__mem-label">memes</span>
               <svg className="pie-icon pie-icon--brain" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 5a3 3 0 0 0-3 3 2.5 2.5 0 0 0-1.5 4.5A2.5 2.5 0 0 0 9 17a2.5 2.5 0 0 0 3 1 2.5 2.5 0 0 0 3-1 2.5 2.5 0 0 0 1.5-4.5A2.5 2.5 0 0 0 15 8a3 3 0 0 0-3-3Z" />
                 <path d="M12 5v13" />

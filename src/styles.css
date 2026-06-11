@@ -870,6 +870,10 @@ p {
   color: rgba(246, 240, 232, 0.74);
 }
 
+.pie-panel .dashboard-note {
+  margin-top: 18px;
+}
+
 .pie-wrap {
   display: grid;
   grid-template-columns: 190px 1fr;
