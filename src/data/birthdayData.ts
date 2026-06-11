@@ -47,11 +47,11 @@ export const predictions = [
   {
     id: 'bi-goddess',
     number: 'III',
-    arcana: 'The Dashboard',
-    title: 'Аркан BI-богини',
+    arcana: 'The Abundance',
+    title: 'Аркан изобилия',
     icon: 'chart' as PredictionIcon,
     text:
-      'Перед тобой карта ясности, структуры и красивых инсайтов. В этом году все важные метрики растут: счастье +38%, красота +невозможно посчитать, любовь коллег +infinity, поводы для радости - above target.',
+      'Перед тобой карта ясности, структуры и красивых инсайтов. Все важные метрики растут — как и деньги на твоих счетах. Корица по четвергам, бейлис по пятницам. В этой жизни всё к твоим ногам.',
   },
   {
     id: 'rare-luck',
@@ -65,8 +65,8 @@ export const predictions = [
   {
     id: 'five-lessons',
     number: 'V',
-    arcana: 'The Five Lessons',
-    title: 'Аркан пяти уроков английского',
+    arcana: 'The Hard Skills',
+    title: 'Аркан твёрдых навыков',
     icon: 'bolt' as PredictionIcon,
     text:
       'Пять уроков английского в неделю это уже не хобби, это вторая работа. Предсказание: к концу года англичане начнут переспрашивать у тебя, как правильно сказать.',
@@ -92,27 +92,29 @@ export const kpis = [
 ];
 
 export const chartBars = [
-  { label: 'Work', value: 95 },
-  { label: 'Rest', value: 35 },
-  { label: 'Joy', value: 100 },
+  { label: 'Work-hard-play-hard', value: 110 },
+  { label: 'Rest', value: 48 },
+  { label: 'Joy', value: 55 },
   { label: 'Love from us', value: 300 },
 ];
 
 export const migrationStops = [
   { place: 'пгт Грибановский', note: 'точка отсчета', isHome: false },
-  { place: 'Москва', note: 'разгон', isHome: false },
-  { place: 'Шри-Ланка', note: 'пробный заход', isHome: false },
+  { place: 'Москва', note: 'Общежитие ГУУ 🌆 → Борисовские пруды 🌳', isHome: false },
+  { place: 'Шри-Ланка', note: 'уже почувствовала островную жизнь, но что-то не то', isHome: false },
   { place: 'Турция', note: 'еще теплее', isHome: false },
-  { place: 'Грузия', note: 'транзит', isHome: false },
-  { place: 'Кипр', note: 'остров стал домиком', isHome: true },
+  { place: 'Грузия', note: 'снова многоэтажки. в этом ли счастье?', isHome: false },
+  { place: 'Кипр', note: 'кажется, твоя остановочка', isHome: true },
 ];
 
-export const metrics = [
-  ['Умение разобраться в хаосе', 'Excellent'],
-  ['Красивые образы', 'Always on'],
-  ['Поддержка подруг', 'Unlimited'],
-  ['Уровень ответственности', 'Too high, please reduce'],
-  ['Способность быть прекрасной', 'Confirmed'],
+export type MetricMark = 'check' | 'heart';
+
+export const metrics: { metric: string; status: string; mark: MetricMark }[] = [
+  { metric: 'Умение разобраться в хаосе', status: 'Excellent', mark: 'check' },
+  { metric: 'Красивые образы', status: 'Always on', mark: 'check' },
+  { metric: 'Поддержка подруг', status: 'Unlimited', mark: 'heart' },
+  { metric: 'Уровень ответственности', status: 'Too high, please reduce', mark: 'check' },
+  { metric: 'Способность быть прекрасной', status: 'Confirmed', mark: 'heart' },
 ];
 
 export const dressUpPresets = [
