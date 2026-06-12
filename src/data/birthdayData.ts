@@ -107,13 +107,14 @@ export const migrationStops = [
   { place: 'Кипр', note: 'кажется, твоя остановочка', isHome: true },
 ];
 
-export type MetricMark = 'check' | 'heart';
+export type MetricMark = 'check' | 'heart' | 'butterfly';
 
 export const metrics: { metric: string; status: string; mark: MetricMark }[] = [
   { metric: 'Умение разобраться в хаосе', status: 'Excellent', mark: 'check' },
   { metric: 'Красивые образы', status: 'Always on', mark: 'check' },
   { metric: 'Поддержка подруг', status: 'Unlimited', mark: 'heart' },
   { metric: 'Уровень ответственности', status: 'Too high, please reduce', mark: 'check' },
+  { metric: 'Уровень токсичности', status: '−−−∞', mark: 'butterfly' },
   { metric: 'Способность быть прекрасной', status: 'Confirmed', mark: 'heart' },
 ];
 

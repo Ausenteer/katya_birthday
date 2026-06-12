@@ -134,7 +134,16 @@ function BirthdayDashboard() {
           <div className="metric-table" role="table" aria-label="Метрики Кати">
             {metrics.map(({ metric, status, mark }) => (
               <div className="metric-table__row" role="row" key={metric}>
-                {mark === 'heart' ? (
+                {mark === 'butterfly' ? (
+                  <svg className="metric-mark metric-mark--butterfly" viewBox="0 0 24 24" role="cell" aria-label="не токсично">
+                    <line x1="12" y1="6.5" x2="12" y2="17.5" />
+                    <ellipse cx="8" cy="9.5" rx="4" ry="3" transform="rotate(-18 8 9.5)" />
+                    <ellipse cx="16" cy="9.5" rx="4" ry="3" transform="rotate(18 16 9.5)" />
+                    <ellipse cx="9" cy="15" rx="3" ry="2.4" transform="rotate(20 9 15)" />
+                    <ellipse cx="15" cy="15" rx="3" ry="2.4" transform="rotate(-20 15 15)" />
+                    <path d="M12 6.5c-.5-.9-1.3-1.5-2.2-1.7M12 6.5c.5-.9 1.3-1.5 2.2-1.7" />
+                  </svg>
+                ) : mark === 'heart' ? (
                   <svg className="metric-mark metric-mark--heart" viewBox="0 0 24 24" role="cell" aria-label="любим">
                     <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
                   </svg>

@@ -1166,6 +1166,16 @@ p {
   stroke: none;
 }
 
+.metric-mark--butterfly line,
+.metric-mark--butterfly ellipse,
+.metric-mark--butterfly path {
+  fill: none;
+  stroke: var(--gold-bright);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .dress-up {
   width: min(1160px, calc(100% - 48px));
 }
