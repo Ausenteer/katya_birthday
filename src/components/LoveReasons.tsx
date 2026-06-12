@@ -1,27 +1,15 @@
 import { CSSProperties, useState } from 'react';
-import { loveFacts, loveReasons } from '../data/birthdayData';
+import { loveReasons } from '../data/birthdayData';
 import { useReveal } from '../hooks/useReveal';
 
 function LoveReasons() {
   const revealRef = useReveal<HTMLElement>();
   const [caught, setCaught] = useState<number[]>([]);
   const [active, setActive] = useState<number | null>(null);
-  const [factIndex, setFactIndex] = useState(0);
 
   const catchFirefly = (index: number) => {
     setCaught((prev) => (prev.includes(index) ? prev : [...prev, index]));
     setActive(index);
-  };
-
-  const nextFact = () => {
-    setFactIndex((index) => {
-      if (loveFacts.length < 2) return index;
-      let next = index;
-      while (next === index) {
-        next = Math.floor(Math.random() * loveFacts.length);
-      }
-      return next;
-    });
   };
 
   const releaseFireflies = () => {
@@ -107,12 +95,6 @@ function LoveReasons() {
             Вернуть светлячков
           </button>
         )}
-        <div className="compliment-generator">
-          <p>{loveFacts[factIndex]}</p>
-          <button className="button button--primary" type="button" onClick={nextFact}>
-            Сгенерировать факт
-          </button>
-        </div>
       </div>
     </section>
   );

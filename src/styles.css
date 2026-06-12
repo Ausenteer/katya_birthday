@@ -2159,22 +2159,6 @@ p {
   margin-top: 26px;
 }
 
-.compliment-generator {
-  width: min(720px, 100%);
-  border: 1px solid rgba(216, 180, 106, 0.24);
-  border-radius: 20px;
-  padding: 20px;
-  text-align: center;
-  background: rgba(91, 24, 36, 0.18);
-}
-
-.compliment-generator p {
-  margin: 0 0 16px;
-  color: var(--milk);
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.35rem;
-}
-
 .greetings-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
