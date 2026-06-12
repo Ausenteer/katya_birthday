@@ -516,6 +516,17 @@ p {
   font-family: 'Playfair Display', Georgia, serif;
   font-weight: 600;
   text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 22%, rgba(122, 124, 198, 0.2), transparent 50%),
+    linear-gradient(170deg, rgba(14, 16, 34, 0.99), rgba(6, 7, 16, 0.99));
+}
+
+.prediction-card__front::after {
+  background-image:
+    radial-gradient(1.2px 1.2px at 18% 15%, rgba(245, 212, 139, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 76% 20%, rgba(245, 212, 139, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 28% 84%, rgba(245, 212, 139, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 82% 80%, rgba(245, 212, 139, 0.4), transparent 60%);
 }
 
 .prediction-card__icon {
