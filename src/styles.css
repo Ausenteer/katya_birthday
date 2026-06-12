@@ -898,7 +898,8 @@ p {
 }
 
 .pie-chart {
-  width: 190px;
+  width: 100%;
+  height: 100%;
   aspect-ratio: 1;
   border-radius: 50%;
   background: conic-gradient(
@@ -2759,7 +2760,8 @@ p {
     inset: -36px -22px;
   }
 
-  .pie-chart {
+  .pie-chart-container {
     width: 168px;
+    height: 168px;
   }
 }
