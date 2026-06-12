@@ -53,10 +53,10 @@ function PredictionCard({ prediction, isSelected, isDimmed, onSelect }: Predicti
   return (
     <button aria-pressed={isSelected} className={className} onClick={onSelect} type="button">
       <span className="prediction-card__inner">
-        <span className="prediction-card__face prediction-card__back">
+        <span className="prediction-card__face prediction-card__back prediction-card__back--constellation">
           <span className="prediction-card__back-top">✦</span>
           <span className="prediction-card__back-seal">
-            <span className="prediction-card__back-seal-inner">♡</span>
+            <span className="prediction-card__back-seal-inner">К</span>
           </span>
           <span className="prediction-card__back-bottom">
             <span className="prediction-card__mark">Birthday Tarot</span>

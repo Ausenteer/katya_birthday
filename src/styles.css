@@ -600,6 +600,51 @@ p {
   text-shadow: 0 0 18px rgba(245, 212, 139, 0.5);
 }
 
+/* Рубашка карт: звёздное «созвездие К» (синий ночной фон) */
+.prediction-card__back--constellation {
+  background:
+    radial-gradient(ellipse at 50% 28%, rgba(122, 124, 198, 0.2), transparent 52%),
+    linear-gradient(170deg, rgba(14, 16, 34, 0.99), rgba(6, 7, 16, 0.99));
+}
+
+.prediction-card__back--constellation::after {
+  background-image:
+    radial-gradient(1.3px 1.3px at 20% 18%, rgba(245, 212, 139, 0.85), transparent 60%),
+    radial-gradient(1px 1px at 70% 24%, rgba(245, 212, 139, 0.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 34% 60%, rgba(245, 212, 139, 0.75), transparent 60%),
+    radial-gradient(1px 1px at 80% 70%, rgba(245, 212, 139, 0.6), transparent 60%),
+    radial-gradient(1.2px 1.2px at 55% 86%, rgba(245, 212, 139, 0.7), transparent 60%),
+    radial-gradient(1px 1px at 14% 80%, rgba(245, 212, 139, 0.6), transparent 60%);
+}
+
+.prediction-card__back--constellation .prediction-card__back-seal {
+  overflow: hidden;
+}
+
+.prediction-card__back--constellation .prediction-card__back-seal-inner {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: 0.92;
+}
+
+.prediction-card__back--constellation .prediction-card__back-seal::after {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: 17px;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--gold-bright);
+  box-shadow:
+    37px 5px 0 rgba(245, 212, 139, 0.9),
+    9px 43px 0 rgba(245, 212, 139, 0.7),
+    44px 41px 0 rgba(245, 212, 139, 0.85),
+    -3px 28px 0 rgba(245, 212, 139, 0.6),
+    29px 23px 0 rgba(245, 212, 139, 0.9);
+}
+
 .prediction-card__back-bottom {
   position: relative;
   z-index: 1;
