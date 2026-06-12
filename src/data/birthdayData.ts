@@ -87,7 +87,7 @@ export const kpis = [
   { label: 'Beauty Score', value: '∞', caption: 'Метрика не помещается в стандартный формат' },
   { label: 'Hardwork Level', value: '999+', caption: 'Екатерина Хардворковна mode: active' },
   { label: 'Friendship Value', value: 'priceless', caption: 'Не поддаётся оценке, но точно растёт' },
-  { label: 'Kinder Fuel', value: 'Full tank', caption: 'Запас бегемотиков и Cards пополнен' },
+  { label: 'Kinder Fuel', value: 'Full tank', caption: 'Резерв бегемотиков пополнен и ждёт нужного момента' },
   { label: 'Storytelling Level', value: 'Legendary', caption: 'История про киприотов и трубу затребована на бис' },
 ];
 
