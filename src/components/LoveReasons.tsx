@@ -9,11 +9,15 @@ function LoveReasons() {
 
   const catchFirefly = (index: number) => {
     setCaught((prev) => (prev.includes(index) ? prev : [...prev, index]));
-    setActive(index);
+    setActive((prev) => (prev === index ? null : index));
   };
 
   const releaseFireflies = () => {
     setCaught([]);
+    setActive(null);
+  };
+
+  const hideReveal = () => {
     setActive(null);
   };
 
@@ -27,7 +31,7 @@ function LoveReasons() {
         <p>Поймай светлячков: в каждом спрятана причина, почему ты для нас такая особенная.</p>
       </div>
 
-      <div className="firefly-game" aria-label="Интерактивные светлячки с причинами">
+      <div className="firefly-game" aria-label="Интерактивные светлячки с причинами" onClick={hideReveal}>
         <div className="firefly-game__sky" aria-hidden="true" />
 
         {loveReasons.map((reason, index) => {
@@ -57,7 +61,10 @@ function LoveReasons() {
               <button
                 aria-label={`Поймать светлячок ${index + 1}`}
                 className={isCaught ? 'firefly is-caught' : 'firefly'}
-                onClick={() => catchFirefly(index)}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  catchFirefly(index);
+                }}
                 type="button"
               >
                 <span className="firefly__wing firefly__wing--left" />
