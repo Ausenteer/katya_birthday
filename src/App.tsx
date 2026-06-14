@@ -2,10 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { sections } from './data/birthdayData';
 import BirthdayDashboard from './components/BirthdayDashboard';
 import FinalSection from './components/FinalSection';
-import GreetingsSection from './components/GreetingsSection';
 import HeroSection from './components/HeroSection';
 import Layout from './components/Layout';
 import LoveReasons from './components/LoveReasons';
+import PhotoAlbumSection from './components/PhotoAlbumSection';
 import PredictionCards from './components/PredictionCards';
 import SectionNav from './components/SectionNav';
 
@@ -65,7 +65,7 @@ function App() {
       <PredictionCards />
       <BirthdayDashboard />
       <LoveReasons />
-      <GreetingsSection />
+      <PhotoAlbumSection />
       <FinalSection />
     </Layout>
   );

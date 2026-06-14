@@ -12,7 +12,7 @@ function HeroSection({ onStart }: HeroSectionProps) {
   return (
     <section className="hero section reveal" id="hero" ref={revealRef}>
       <div className="hero__copy">
-        <p className="eyebrow">{birthdayGirl.company} birthday edition</p>
+        <p className="eyebrow">Birthday edition</p>
         <h1>С днём рождения, {birthdayGirl.name}!</h1>
         <p className="script-line">Сегодня всё для тебя</p>
         <p className="hero__lead">

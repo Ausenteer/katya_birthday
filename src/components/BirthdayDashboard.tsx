@@ -9,7 +9,7 @@ function BirthdayDashboard() {
   return (
     <section className="section reveal" id="dashboard" ref={revealRef}>
       <div className="section-heading">
-        <p className="eyebrow">Servers.com x Birthday Analytics</p>
+        <p className="eyebrow">Birthday Analytics</p>
         <h2>Birthday BI Dashboard</h2>
         <p>Аналитика по самому ценному активу команды - Кате.</p>
       </div>
@@ -31,17 +31,20 @@ function BirthdayDashboard() {
               <div className="bar-chart__row" key={bar.label}>
                 <span>{bar.label}</span>
                 <div className="bar-chart__track">
-                  <span style={useCssNumber('--bar-width', bar.value)} />
+                  <span style={useCssNumber('--bar-width', Math.min(bar.value, 100))} />
                 </div>
                 <strong>{bar.value}%</strong>
               </div>
             ))}
           </div>
-          <p className="dashboard-note">
-            Вывод подружек: хоть аналитики считают, что всё в порядке. Наши графики показывают
-            обратное. Следуй рекомендациям: уютного гнёздышка, больше встреч и тус с подружками и
-            прогулок после обеда.
-          </p>
+          <div className="dashboard-note">
+            <p>Хотя аналитики считают, что всё в порядке, наши графики показывают обратное.</p>
+            <p>Вывод подружек: показатель отдыха требует срочного увеличения.</p>
+            <p>
+              Рекомендации: больше моря, прогулок после обеда, красивых мест, вкусной еды и тус с
+              подружками.
+            </p>
+          </div>
         </div>
 
         <div className="dashboard__panel pie-panel">
@@ -101,7 +104,7 @@ function BirthdayDashboard() {
               </svg>
             </div>
             <ul>
-              <li><span className="legend legend--one" />25% любовь к красному<small>если машину выбирал Коля, то почему она очень подходит к твоим балеткам?</small></li>
+              <li><span className="legend legend--one" />25% любовь к красному<small>если машину выбирал Коля, то почему она так подходит к твоим балеткам?</small></li>
               <li><span className="legend legend--two" />25% мемология<small>ты могла бы говорить исключительно рилсами и шуточками, если бы не твои 5 уроков английского в неделю</small></li>
               <li><span className="legend legend--three" />25% Kinder PR-менеджер<small>бегемотики, карточки, криспи — это всё сюдаааа</small></li>
               <li><span className="legend legend--flower" aria-hidden="true">✿</span>125% исключительной притягательности</li>
