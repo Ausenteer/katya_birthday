@@ -6,8 +6,13 @@ import albumPhoto03 from '../assets/album/friends-03.jpg';
 import albumPhoto04 from '../assets/album/friends-04.jpg';
 import albumPhoto05 from '../assets/album/friends-05.jpg';
 import albumPhoto06 from '../assets/album/friends-06.jpg';
+import albumPhoto07 from '../assets/album/friends-07.jpg';
+import albumPhoto08 from '../assets/album/friends-08.jpg';
 import albumVideo01 from '../assets/album/friends-video-01.mp4';
 import albumVideo02 from '../assets/album/friends-video-02.mp4';
+import albumVideo03 from '../assets/album/friends-video-03.mp4';
+import albumVideo04 from '../assets/album/friends-video-04.mp4';
+import albumVideo05 from '../assets/album/friends-video-05.mp4';
 import { useReveal } from '../hooks/useReveal';
 
 type AlbumItem = {
@@ -27,39 +32,44 @@ const albumItems: AlbumItem[] = [
     className: 'is-featured',
   },
   { type: 'image', src: albumPhoto02, title: 'Доказательство 02', caption: 'подружечный data point' },
-  { type: 'video', src: albumVideo01, title: 'Живой кадр 03', caption: 'motion evidence', className: 'is-tall' },
+  { type: 'video', src: albumVideo04, title: 'Живой кадр 03', caption: 'motion evidence', className: 'is-tall' },
   { type: 'image', src: albumPhoto03, title: 'Доказательство 04', caption: 'золотой момент' },
-  { type: 'image', src: albumPhoto04, title: 'Доказательство 05', caption: 'красивое сохранено' },
+  { type: 'image', src: albumPhoto06, title: 'Доказательство 08', caption: 'ещё один повод улыбнуться' },
   { type: 'image', src: albumPhoto05, title: 'Доказательство 06', caption: 'архив красоты' },
   { type: 'video', src: albumVideo02, title: 'Живой кадр 07', caption: 'маленький фильм' },
-  { type: 'image', src: albumPhoto06, title: 'Доказательство 08', caption: 'ещё один повод улыбнуться' },
+  { type: 'image', src: albumPhoto04, title: 'Доказательство 05', caption: 'красивое сохранено' },
+  { type: 'video', src: albumVideo03, title: 'Живой кадр 09', caption: 'ещё один маленький фильм', className: 'is-tall' },
+  { type: 'video', src: albumVideo01, title: 'Живой кадр 10', caption: 'короткое доказательство', className: 'is-tall' },
+  { type: 'image', src: albumPhoto07, title: 'Доказательство 11', caption: 'тёплый кадр' },
+  { type: 'image', src: albumPhoto08, title: 'Доказательство 12', caption: 'общий момент', className: 'is-tall' },
+  { type: 'video', src: albumVideo05, title: 'Живой кадр 13', caption: 'вертикальный момент' },
 ];
 
 function PhotoAlbumSection() {
   const revealRef = useReveal<HTMLElement>();
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const activeItem = activeIndex === null ? null : albumItems[activeIndex];
+  const [modalIndex, setModalIndex] = useState<number | null>(null);
+  const modalItem = modalIndex === null ? null : albumItems[modalIndex];
 
   const showPrevious = () => {
-    setActiveIndex((index) => (index === null ? null : (index - 1 + albumItems.length) % albumItems.length));
+    setModalIndex((index) => (index === null ? null : (index - 1 + albumItems.length) % albumItems.length));
   };
 
   const showNext = () => {
-    setActiveIndex((index) => (index === null ? null : (index + 1) % albumItems.length));
+    setModalIndex((index) => (index === null ? null : (index + 1) % albumItems.length));
   };
 
   useEffect(() => {
-    if (activeIndex === null) return;
+    if (modalIndex === null) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setActiveIndex(null);
+      if (event.key === 'Escape') setModalIndex(null);
       if (event.key === 'ArrowLeft') showPrevious();
       if (event.key === 'ArrowRight') showNext();
     };
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [activeIndex]);
+  }, [modalIndex]);
 
   return (
     <section className="section reveal photo-album" id="album" ref={revealRef}>
@@ -75,7 +85,7 @@ function PhotoAlbumSection() {
             aria-label={`Открыть ${item.title}`}
             className={['album-card', item.className].filter(Boolean).join(' ')}
             key={item.title}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => setModalIndex(index)}
             type="button"
           >
             {item.type === 'video' ? (
@@ -89,16 +99,16 @@ function PhotoAlbumSection() {
         ))}
       </div>
 
-      {activeItem && activeIndex !== null && createPortal(
-        <div className="modal" role="dialog" aria-modal="true" aria-label={activeItem.title}>
-          <button className="modal__backdrop" type="button" aria-label="Закрыть" onClick={() => setActiveIndex(null)} />
+      {modalItem && modalIndex !== null && createPortal(
+        <div className="modal" role="dialog" aria-modal="true" aria-label={modalItem.title}>
+          <button className="modal__backdrop" type="button" aria-label="Закрыть" onClick={() => setModalIndex(null)} />
           <div
             className="modal__card album-modal"
             onClick={(event) => {
-              if (event.target === event.currentTarget) setActiveIndex(null);
+              if (event.target === event.currentTarget) setModalIndex(null);
             }}
           >
-            <button className="album-modal__close" type="button" aria-label="Закрыть" onClick={() => setActiveIndex(null)}>
+            <button className="album-modal__close" type="button" aria-label="Закрыть" onClick={() => setModalIndex(null)}>
               ×
             </button>
             <button className="album-modal__nav album-modal__nav--prev" type="button" aria-label="Предыдущий кадр" onClick={showPrevious}>
@@ -110,10 +120,10 @@ function PhotoAlbumSection() {
                   <span key={index}>✦</span>
                 ))}
               </div>
-              {activeItem.type === 'video' ? (
-                <video className="album-modal__media-main" autoPlay controls loop muted playsInline src={activeItem.src} />
+              {modalItem.type === 'video' ? (
+                <video className="album-modal__media-main" autoPlay controls loop muted playsInline src={modalItem.src} />
               ) : (
-                <img className="album-modal__media-main" alt={activeItem.title} src={activeItem.src} />
+                <img className="album-modal__media-main" alt={modalItem.title} src={modalItem.src} />
               )}
             </div>
             <button className="album-modal__nav album-modal__nav--next" type="button" aria-label="Следующий кадр" onClick={showNext}>

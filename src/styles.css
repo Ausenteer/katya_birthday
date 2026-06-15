@@ -2303,16 +2303,6 @@ p {
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
-.album-card:nth-child(2),
-.album-card:nth-child(6) {
-  rotate: -1.1deg;
-}
-
-.album-card:nth-child(4),
-.album-card:nth-child(8) {
-  rotate: 1.2deg;
-}
-
 .album-card:hover {
   border-color: rgba(245, 212, 139, 0.58);
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55), 0 0 34px rgba(216, 180, 106, 0.16);
@@ -2350,7 +2340,7 @@ p {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, transparent 36%, rgba(5, 5, 5, 0.7)),
+    linear-gradient(180deg, transparent 44%, rgba(5, 5, 5, 0.52)),
     radial-gradient(circle at 50% 0%, rgba(245, 212, 139, 0.12), transparent 46%);
   pointer-events: none;
 }
@@ -3038,17 +3028,19 @@ p {
     grid-column: auto;
     grid-row: auto;
     width: 100%;
-    aspect-ratio: 4 / 5.1;
-    rotate: 0deg;
-    justify-self: stretch;
+    aspect-ratio: 4 / 5.2;
     border-radius: 22px;
+    rotate: 0deg;
     box-shadow: 0 18px 54px rgba(0, 0, 0, 0.42);
   }
 
   .album-card.is-featured {
     grid-column: 1 / -1;
-    width: 100%;
-    aspect-ratio: 4 / 3.8;
+    aspect-ratio: 4 / 3.6;
+  }
+
+  .album-card.is-tall {
+    aspect-ratio: 9 / 16;
   }
 
   .modal:has(.album-modal) {
