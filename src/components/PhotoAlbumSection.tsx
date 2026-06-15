@@ -48,6 +48,7 @@ const albumItems: AlbumItem[] = [
 function PhotoAlbumSection() {
   const revealRef = useReveal<HTMLElement>();
   const [modalIndex, setModalIndex] = useState<number | null>(null);
+  const [isModalMediaLoading, setIsModalMediaLoading] = useState(false);
   const modalItem = modalIndex === null ? null : albumItems[modalIndex];
 
   const showPrevious = () => {
@@ -69,6 +70,10 @@ function PhotoAlbumSection() {
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
+  }, [modalIndex]);
+
+  useEffect(() => {
+    setIsModalMediaLoading(modalIndex !== null);
   }, [modalIndex]);
 
   return (
@@ -120,10 +125,30 @@ function PhotoAlbumSection() {
                   <span key={index}>✦</span>
                 ))}
               </div>
+              {isModalMediaLoading && (
+                <div className="album-modal__loader" aria-label="Загрузка кадра" role="status">
+                  <span />
+                </div>
+              )}
               {modalItem.type === 'video' ? (
-                <video className="album-modal__media-main" autoPlay controls loop muted playsInline src={modalItem.src} />
+                <video
+                  className={isModalMediaLoading ? 'album-modal__media-main is-loading' : 'album-modal__media-main'}
+                  autoPlay
+                  controls
+                  loop
+                  muted
+                  onCanPlay={() => setIsModalMediaLoading(false)}
+                  onLoadedData={() => setIsModalMediaLoading(false)}
+                  playsInline
+                  src={modalItem.src}
+                />
               ) : (
-                <img className="album-modal__media-main" alt={modalItem.title} src={modalItem.src} />
+                <img
+                  className={isModalMediaLoading ? 'album-modal__media-main is-loading' : 'album-modal__media-main'}
+                  alt={modalItem.title}
+                  onLoad={() => setIsModalMediaLoading(false)}
+                  src={modalItem.src}
+                />
               )}
             </div>
             <button className="album-modal__nav album-modal__nav--next" type="button" aria-label="Следующий кадр" onClick={showNext}>

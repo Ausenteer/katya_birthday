@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useReveal } from '../hooks/useReveal';
 
 function FinalSection() {
@@ -34,24 +35,27 @@ function FinalSection() {
         </button>
       </div>
 
-      {isOpen && (
-        <div className="modal" role="dialog" aria-modal="true" aria-labelledby="final-title">
-          <button className="modal__backdrop" type="button" aria-label="Закрыть" onClick={() => setIsOpen(false)} />
-          <div className="modal__card">
-            <p className="eyebrow">Финальное предсказание</p>
-            <h3 id="final-title">Год, в котором ты будешь много жить</h3>
-            <p>
-              Все карты, метрики и прочие надёжные источники сходятся в одном: впереди год, в
-              котором ты будешь не только много успевать, но и много жить. А если мир однажды
-              покажется слишком расколдованным — у тебя есть люди, которые в любой момент готовы
-              сочинить для тебя сказку. Например, вот эту.
-            </p>
-            <button className="button button--ghost" type="button" onClick={() => setIsOpen(false)}>
-              Закрыть
-            </button>
+      {isOpen &&
+        createPortal(
+          <div className="modal" role="dialog" aria-modal="true" aria-labelledby="final-title">
+            <button className="modal__backdrop" type="button" aria-label="Закрыть" onClick={() => setIsOpen(false)} />
+            <div className="modal__card">
+              <p className="eyebrow">Финальное предсказание</p>
+              <h3 id="final-title">Год, в котором ты будешь много жить</h3>
+              <p>
+                Все карты, метрики и прочие надёжные источники сходятся в одном: впереди год, в
+                котором ты будешь не только много успевать, но и много жить. А если мир однажды
+                покажется слишком расколдованным — у тебя есть люди, которые в любой момент готовы
+                сочинить для тебя сказку. Например, вот эту.
+              </p>
+              <button className="button button--ghost" type="button" onClick={() => setIsOpen(false)}>
+                Закрыть
+              </button>
+            </div>
           </div>
-        </div>
-      )}
+          ,
+          document.body,
+        )}
     </section>
   );
 }

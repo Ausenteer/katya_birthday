@@ -2597,6 +2597,9 @@ p {
   grid-column: 2;
   display: grid;
   place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: min(76vh, 800px);
   min-height: 0;
   border: 1px solid rgba(245, 212, 139, 0.26);
   border-radius: 18px;
@@ -2674,13 +2677,40 @@ p {
 .album-modal__stars span:nth-child(9) { left: 9%; top: 45%; animation-delay: -4s; opacity: 0.42; }
 .album-modal__stars span:nth-child(10) { left: 88%; top: 43%; animation-delay: -1.7s; opacity: 0.48; }
 
+.album-modal__loader {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 50%, rgba(8, 7, 11, 0.54), transparent 18rem);
+}
+
+.album-modal__loader span {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(245, 212, 139, 0.2);
+  border-top-color: rgba(245, 212, 139, 0.86);
+  border-radius: 50%;
+  box-shadow: 0 0 28px rgba(216, 180, 106, 0.22);
+  animation: modalLoaderSpin 860ms linear infinite;
+}
+
 .album-modal__media-main {
   position: relative;
   z-index: 1;
   display: block;
-  width: 100%;
+  width: auto;
+  height: auto;
+  max-width: 100%;
   max-height: min(76vh, 800px);
   object-fit: contain;
+  opacity: 1;
+  transition: opacity 180ms ease;
+}
+
+.album-modal__media-main.is-loading {
+  opacity: 0;
 }
 
 @keyframes floatSpark {
@@ -2692,6 +2722,10 @@ p {
 @keyframes cardAppear {
   from { opacity: 0; transform: translateY(14px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes modalLoaderSpin {
+  to { transform: rotate(360deg); }
 }
 
 @keyframes sweaterDressFly {
@@ -3058,6 +3092,7 @@ p {
 
   .album-modal__media {
     grid-column: 1 / -1;
+    aspect-ratio: 4 / 5.25;
     max-height: calc(100vh - 92px);
     border-radius: 18px;
   }
@@ -3080,6 +3115,7 @@ p {
   }
 
   .album-modal__media-main {
+    height: auto;
     max-height: calc(100vh - 92px);
   }
 
