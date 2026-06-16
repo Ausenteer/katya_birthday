@@ -77,7 +77,7 @@ function LoveReasons() {
 
         <div className="firefly-reveal" aria-live="polite">
           {active === null ? (
-            <p className="firefly-reveal__hint">поймай первого светлячка</p>
+            <p className="firefly-reveal__hint">поймай светлячка</p>
           ) : (
             <div className="firefly-reveal__card" key={active}>
               <span className="firefly-reveal__index">

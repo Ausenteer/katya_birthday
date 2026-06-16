@@ -81,7 +81,7 @@ function PhotoAlbumSection() {
       <div className="section-heading">
         <p className="eyebrow">Friendship archive</p>
         <h2>Наш маленький датасет</h2>
-        <p>Небольшая коллекция тёплых и очень ценных общих моментов.</p>
+        <p>Небольшая коллекция тёплых и очень ценных моментов. Очень надеемся, что скоро их станет в разы больше.</p>
       </div>
 
       <div className="photo-album__grid">
